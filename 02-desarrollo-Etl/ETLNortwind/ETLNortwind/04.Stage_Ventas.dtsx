@@ -11,8 +11,8 @@
   DTS:LocaleID="3082"
   DTS:ObjectName="04 Stage_Ventas"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{670712D5-1E30-4D2F-93DF-7A2317AFCC0A}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{DEE3B707-539D-4550-A845-6E975F10EE9E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -328,7 +328,7 @@
                   dataType="System.Int32"
                   description="Specifies the type of join to perform."
                   name="JoinType"
-                  typeConverter="JoinType">2</property>
+                  typeConverter="JoinType">1</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the number of columns in the ordering key."

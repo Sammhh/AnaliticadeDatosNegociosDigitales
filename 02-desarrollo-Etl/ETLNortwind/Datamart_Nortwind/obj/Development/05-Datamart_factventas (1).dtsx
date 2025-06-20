@@ -11,8 +11,8 @@
   DTS:LocaleID="2058"
   DTS:ObjectName="05-Datamart_factventas"
   DTS:PackageType="5"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{A889CA6A-13BE-47D7-BA3B-964071FF770B}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{51564CB2-5106-4F49-878D-C8B1088BDE4B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1901,6 +1901,34 @@ on sv.ventasorden = dt.tiempo_fechaActual</property>
                       cachedScale="2"
                       externalMetadataColumnId="Package\CARGA FACT VENTAS\TABLA DATAMART.Inputs[Entrada de destino de OLE DB].ExternalColumns[ventas_descuento]"
                       lineageId="Package\CARGA FACT VENTAS\LEFT JOIN STAGE DATA MART FACT VENTAS.Outputs[Salida de combinación de mezcla].Columns[ventasdescuento]" />
+                    <inputColumn
+                      refId="Package\CARGA FACT VENTAS\TABLA DATAMART.Inputs[Entrada de destino de OLE DB].Columns[cliente_Skey]"
+                      cachedDataType="i4"
+                      cachedName="cliente_Skey"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\CARGA FACT VENTAS\TABLA DATAMART.Inputs[Entrada de destino de OLE DB].ExternalColumns[cliente_SKey]"
+                      lineageId="Package\CARGA FACT VENTAS\LEFT JOIN STAGE DATA MART FACT VENTAS.Outputs[Salida de combinación de mezcla].Columns[cliente_Skey]" />
+                    <inputColumn
+                      refId="Package\CARGA FACT VENTAS\TABLA DATAMART.Inputs[Entrada de destino de OLE DB].Columns[empleado_Skey]"
+                      cachedDataType="i4"
+                      cachedName="empleado_Skey"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\CARGA FACT VENTAS\TABLA DATAMART.Inputs[Entrada de destino de OLE DB].ExternalColumns[empleado_SKey]"
+                      lineageId="Package\CARGA FACT VENTAS\LEFT JOIN STAGE DATA MART FACT VENTAS.Outputs[Salida de combinación de mezcla].Columns[empleado_Skey]" />
+                    <inputColumn
+                      refId="Package\CARGA FACT VENTAS\TABLA DATAMART.Inputs[Entrada de destino de OLE DB].Columns[producto_Skey]"
+                      cachedDataType="i4"
+                      cachedName="producto_Skey"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\CARGA FACT VENTAS\TABLA DATAMART.Inputs[Entrada de destino de OLE DB].ExternalColumns[producto_SKey]"
+                      lineageId="Package\CARGA FACT VENTAS\LEFT JOIN STAGE DATA MART FACT VENTAS.Outputs[Salida de combinación de mezcla].Columns[producto_Skey]" />
+                    <inputColumn
+                      refId="Package\CARGA FACT VENTAS\TABLA DATAMART.Inputs[Entrada de destino de OLE DB].Columns[tiempo_Skey]"
+                      cachedDataType="i4"
+                      cachedName="tiempo_Skey"
+                      cachedSortKeyPosition="4"
+                      externalMetadataColumnId="Package\CARGA FACT VENTAS\TABLA DATAMART.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_SKey]"
+                      lineageId="Package\CARGA FACT VENTAS\LEFT JOIN STAGE DATA MART FACT VENTAS.Outputs[Salida de combinación de mezcla].Columns[tiempo_Skey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2024,7 +2052,7 @@ on sv.ventasorden = dt.tiempo_fechaActual</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="189.6,41.6"
+          Size="189.333333333334,41.3333333333334"
           Id="Package\CARGA FACT VENTAS"
           TopLeft="408.333311022985,136.933332381116" />
       </GraphLayout>
@@ -2036,31 +2064,31 @@ on sv.ventasorden = dt.tiempo_fechaActual</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="264.8,41.6"
+          Size="264.666666666667,41.3333333333334"
           Id="Package\CARGA FACT VENTAS\ORDENAR DATAMART FACT VENTAS"
           TopLeft="541.466640622749,128.266665774716" />
         <NodeLayout
-          Size="171.2,41.6"
+          Size="171.333333333334,41.3333333333334"
           Id="Package\CARGA FACT VENTAS\TABLA DATAMART"
           TopLeft="432.299979920686,402.999997197588" />
         <NodeLayout
-          Size="169.6,41.6"
+          Size="169.333333333334,41.3333333333334"
           Id="Package\CARGA FACT VENTAS\División condicional"
           TopLeft="438.966646223102,307.666664527191" />
         <NodeLayout
-          Size="305.6,41.6"
+          Size="305.333333333334,41.3333333333334"
           Id="Package\CARGA FACT VENTAS\LEFT JOIN STAGE DATA MART FACT VENTAS"
           TopLeft="358.133317306307,222.733331784474" />
         <NodeLayout
-          Size="209.6,41.6"
+          Size="209.333333333334,41.3333333333334"
           Id="Package\CARGA FACT VENTAS\DATAMART FACT VENTAS"
           TopLeft="544.999970222514,22.5333331766393" />
         <NodeLayout
-          Size="212.8,41.6"
+          Size="212.666666666667,41.3333333333334"
           Id="Package\CARGA FACT VENTAS\ORDENAR STAGE VENTAS"
           TopLeft="238.233320447968,136.933332381116" />
         <NodeLayout
-          Size="158.4,41.6"
+          Size="158.666666666667,41.3333333333334"
           Id="Package\CARGA FACT VENTAS\STAGE VENTAS"
           TopLeft="156.666658106777,41.5999997107188" />
         <EdgeLayout
@@ -2083,7 +2111,7 @@ on sv.ventasorden = dt.tiempo_fechaActual</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-39.6456640625,17.6830725851986,79.291328125,10.8671875"
+              BoundingBox="-48.1261328125,15.1166663351986,96.252265625,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2261,7 +2289,7 @@ on sv.ventasorden = dt.tiempo_fechaActual</property>
           Text="x "
           ParentId="Package\CARGA FACT VENTAS"
           FontInfo="{assembly:Null}"
-          Size="37.6,40"
+          Size="37.3333333333334,40"
           Id="e3198edc-65ab-4e37-b327-aacad618729a"
           TopLeft="1134.06660483513,5.5" />
       </GraphLayout>

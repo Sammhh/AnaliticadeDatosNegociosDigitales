@@ -11,8 +11,8 @@
   DTS:LocaleID="2058"
   DTS:ObjectName="04-Datamart_dimtiempo"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{6B2E43D9-0479-4E09-A2C2-98D4C75A5E22}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{E08AF4DB-F255-4E52-B443-61D2962BDD0C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -500,53 +500,54 @@
                   name="Entrada de destino de OLE DB">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_fechaActual_DIMTIEMPO]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="tiempo_fechaActual_DIMTIEMPO"
-                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_fechaActual]"
-                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_fechaActual_DIMTIEMPO]" />
-                    <inputColumn
-                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_anio_DIMTIEMPO]"
-                      cachedDataType="i4"
-                      cachedName="tiempo_anio_DIMTIEMPO"
-                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_anio]"
-                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_anio_DIMTIEMPO]" />
-                    <inputColumn
-                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_trimestre_DIMTIEMPO]"
-                      cachedDataType="i4"
-                      cachedName="tiempo_trimestre_DIMTIEMPO"
-                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_trimestre]"
-                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_trimestre_DIMTIEMPO]" />
-                    <inputColumn
-                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_mes_DIMTIEMPO]"
-                      cachedDataType="i4"
-                      cachedName="tiempo_mes_DIMTIEMPO"
-                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_mes]"
-                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_mes_DIMTIEMPO]" />
-                    <inputColumn
-                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_semana_DIMTIEMPO]"
-                      cachedDataType="i4"
-                      cachedName="tiempo_semana_DIMTIEMPO"
-                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_semana]"
-                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_semana_DIMTIEMPO]" />
-                    <inputColumn
-                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_diadeanio_DIMTIEMPO]"
-                      cachedDataType="i4"
-                      cachedName="tiempo_diadeanio_DIMTIEMPO"
-                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_diadeanio]"
-                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_diadeanio_DIMTIEMPO]" />
-                    <inputColumn
-                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_diademes_DIMTIEMPO]"
-                      cachedDataType="i4"
-                      cachedName="tiempo_diademes_DIMTIEMPO"
-                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_diademes]"
-                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_diademes_DIMTIEMPO]" />
-                    <inputColumn
                       refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_DiaDeSemana]"
                       cachedDataType="i4"
                       cachedName="tiempo_DiaDeSemana"
                       externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_diasemana]"
                       lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_DiaDeSemana]" />
+                    <inputColumn
+                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_fechaActual]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="tiempo_fechaActual"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_fechaActual]"
+                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_fechaActual]" />
+                    <inputColumn
+                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_anio]"
+                      cachedDataType="i4"
+                      cachedName="tiempo_anio"
+                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_anio]"
+                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_anio]" />
+                    <inputColumn
+                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_trimestre]"
+                      cachedDataType="i4"
+                      cachedName="tiempo_trimestre"
+                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_trimestre]"
+                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_trimestre]" />
+                    <inputColumn
+                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_mes]"
+                      cachedDataType="i4"
+                      cachedName="tiempo_mes"
+                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_mes]"
+                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_mes]" />
+                    <inputColumn
+                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_semana]"
+                      cachedDataType="i4"
+                      cachedName="tiempo_semana"
+                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_semana]"
+                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_semana]" />
+                    <inputColumn
+                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_diadeanio]"
+                      cachedDataType="i4"
+                      cachedName="tiempo_diadeanio"
+                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_diadeanio]"
+                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_diadeanio]" />
+                    <inputColumn
+                      refId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[tiempo_diademes]"
+                      cachedDataType="i4"
+                      cachedName="tiempo_diademes"
+                      externalMetadataColumnId="Package\Caraga dim Tiempo\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[tiempo_diademes]"
+                      lineageId="Package\Caraga dim Tiempo\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_diademes]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1868,7 +1869,7 @@ tiempo_diadeanio, tiempo_diademes, tiempo_DiaDeSemana from stage_northwind.dbo.S
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-37.25390625,28.2329584418126,74.5078125,10.88671875"
+              BoundingBox="-37.25390625,28.2329584418125,74.5078125,10.88671875"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2039,7 +2040,9 @@ tiempo_diadeanio, tiempo_diademes, tiempo_DiaDeSemana from stage_northwind.dbo.S
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-3.70000013659393,26.6666663713588,16,16"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

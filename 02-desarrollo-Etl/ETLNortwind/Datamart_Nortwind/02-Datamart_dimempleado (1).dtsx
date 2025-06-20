@@ -11,8 +11,8 @@
   DTS:LocaleID="2058"
   DTS:ObjectName="02-Datamart_dimempleado"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{74BC4B3D-5C5F-4428-A0AF-6C3BD44EDB19}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{5055FFC9-BA3C-402C-8F0E-6493177486F3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -62,6 +62,18 @@
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=.;Initial Catalog=datamart_northwind;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-02-Datamart_dimempleado-{836C27B6-A195-46BD-83A7-CBC1721F428D}LocalHost.datamart_northwind;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.stage_northwind]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F0E4474A-D783-48E5-9BEF-97F9409F8388}"
+      DTS:ObjectName="LocalHost.stage_northwind">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=stage_northwind;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-02-Datamart_dimempleado-{F0E4474A-D783-48E5-9BEF-97F9409F8388}LocalHost.stage_northwind;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -862,8 +874,8 @@ from stage_northwind.dbo.empleado as se</property>
               <connections>
                 <connection
                   refId="Package\CARGA DIMEMPLEADO\STAGE_EMPLEADO.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JHPBV9A.stage_northwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JHPBV9A.stage_northwind]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.stage_northwind]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.stage_northwind]"
                   description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
                   name="OleDbConnection" />
               </connections>
@@ -1007,17 +1019,17 @@ from stage_northwind.dbo.empleado as se</property>
           Id="Package\CARGA DIMEMPLEADO\FILTAR EMPLEADOS NUEVOS"
           TopLeft="464.999974593521,332.79999768575" />
         <NodeLayout
+          Size="176.666666666667,41.3333333333334"
+          Id="Package\CARGA DIMEMPLEADO\STAGE_EMPLEADO"
+          TopLeft="42.4999976779025,19.0666665340794" />
+        <NodeLayout
           Size="212.666666666667,41.3333333333334"
           Id="Package\CARGA DIMEMPLEADO\ORDENAR DIM EMPLEADO"
           TopLeft="796.666623138721,140.399999023676" />
         <NodeLayout
-          Size="228.666666666667,41.3333333333334"
-          Id="Package\CARGA DIMEMPLEADO\ORDENAR STAGE EMPLEADO"
-          TopLeft="99.1666612484391,122.199999150237" />
-        <NodeLayout
-          Size="176.666666666667,41.3333333333334"
-          Id="Package\CARGA DIMEMPLEADO\STAGE_EMPLEADO"
-          TopLeft="42.4999976779025,19.0666665340794" />
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\CARGA DIMEMPLEADO\OLE DB Destination"
+          TopLeft="534.374976111577,410.526312352507" />
         <NodeLayout
           Size="311.333333333334,41.3333333333334"
           Id="Package\CARGA DIMEMPLEADO\LEFT JOIN STAGE EMPLEADO DIM EMPLEADO"
@@ -1026,6 +1038,10 @@ from stage_northwind.dbo.empleado as se</property>
           Size="160.666666666667,41.3333333333334"
           Id="Package\CARGA DIMEMPLEADO\DIM_EMPLEADO"
           TopLeft="743.333292719392,20.7999998553594" />
+        <NodeLayout
+          Size="228.666666666667,41.3333333333334"
+          Id="Package\CARGA DIMEMPLEADO\ORDENAR STAGE EMPLEADO"
+          TopLeft="99.1666612484391,122.199999150237" />
         <EdgeLayout
           Id="Package\CARGA DIMEMPLEADO.Paths[Salida de ordenación]"
           TopLeft="213.566661248439,163.799999150237">
@@ -1092,6 +1108,42 @@ from stage_northwind.dbo.empleado as se</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA DIMEMPLEADO.Paths[EMPLEADOS_NUEVOS]"
+          TopLeft="579.333307926854,374.133331019083">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="42.3750015180559,36.3929813334233"
+              Start="0,0"
+              End="42.3750015180559,28.8929813334233">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.1964906667116" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.1964906667116"
+                    Point2="0,18.1964906667116"
+                    Point3="4,18.1964906667116" />
+                  <mssgle:LineSegment
+                    End="38.3750015180559,18.1964906667116" />
+                  <mssgle:CubicBezierSegment
+                    Point1="38.3750015180559,18.1964906667116"
+                    Point2="42.3750015180559,18.1964906667116"
+                    Point3="42.3750015180559,22.1964906667116" />
+                  <mssgle:LineSegment
+                    End="42.3750015180559,28.8929813334233" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.204979709722,23.1964906667116,98.7849609375,10.88671875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -1196,46 +1248,6 @@ from stage_northwind.dbo.empleado as se</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\CARGA DIMEMPLEADO\OLE DB Destination"
-          TopLeft="534.374976111577,410.526312352507" />
-        <EdgeLayout
-          Id="Package\CARGA DIMEMPLEADO.Paths[EMPLEADOS_NUEVOS]"
-          TopLeft="579.333307926854,374.133331019083">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="42.3750015180559,36.3929813334233"
-              Start="0,0"
-              End="42.3750015180559,28.8929813334233">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,14.1964906667116" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,14.1964906667116"
-                    Point2="0,18.1964906667116"
-                    Point3="4,18.1964906667116" />
-                  <mssgle:LineSegment
-                    End="38.3750015180559,18.1964906667116" />
-                  <mssgle:CubicBezierSegment
-                    Point1="38.3750015180559,18.1964906667116"
-                    Point2="42.3750015180559,18.1964906667116"
-                    Point3="42.3750015180559,22.1964906667116" />
-                  <mssgle:LineSegment
-                    End="42.3750015180559,28.8929813334233" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-28.204979709722,23.1964906667116,98.7849609375,10.88671875"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -1248,7 +1260,7 @@ from stage_northwind.dbo.empleado as se</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CARGA DIMEMPLEADO\DIM_EMPLEADO">
+    design-time-name="Package\CARGA DIMEMPLEADO\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1261,7 +1273,7 @@ from stage_northwind.dbo.empleado as se</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CARGA DIMEMPLEADO\OLE DB Destination">
+    design-time-name="Package\CARGA DIMEMPLEADO\DIM_EMPLEADO">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

@@ -11,8 +11,8 @@
   DTS:LocaleID="3082"
   DTS:ObjectName="02 Stage Categorias"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{2C1430D2-9EBF-4ECC-BBC3-48ED8CF2092F}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{FD89148D-4A46-44C0-9F9C-B7237B24B23D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -71,11 +71,10 @@
                   name="Conditional Split Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\CARGA_CATEGORIAS\Conditional Split.Inputs[Conditional Split Input].Columns[CategoryID]"
+                      refId="Package\CARGA_CATEGORIAS\Conditional Split.Inputs[Conditional Split Input].Columns[categoriaid]"
                       cachedDataType="i4"
-                      cachedName="CategoryID"
-                      cachedSortKeyPosition="1"
-                      lineageId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output].Columns[CategoryID]" />
+                      cachedName="categoriaid"
+                      lineageId="Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output].Columns[categoriaid]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -95,13 +94,13 @@
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">[ISNULL](#{Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output].Columns[CategoryID]})</property>
+                      name="Expression">[ISNULL](#{Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output].Columns[categoriaid]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       expressionType="Notify"
-                      name="FriendlyExpression">ISNULL(CategoryID)</property>
+                      name="FriendlyExpression">ISNULL(categoriaid)</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
@@ -148,11 +147,89 @@
               </outputs>
             </component>
             <component
-              refId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS"
+              refId="Package\CARGA_CATEGORIAS\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\CARGA_CATEGORIAS\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CARGA_CATEGORIAS\Data Conversion.Inputs[Data Conversion Input].Columns[CategoryName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="CategoryName"
+                      lineageId="Package\CARGA_CATEGORIAS\Sort.Outputs[Sort Output].Columns[CategoryName]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CARGA_CATEGORIAS\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\CARGA_CATEGORIAS\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_CATEGORIAS\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CategoryName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\CARGA_CATEGORIAS\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CategoryName]"
+                      name="Copy of CategoryName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\CARGA_CATEGORIAS\Sort.Outputs[Sort Output].Columns[CategoryName]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\CARGA_CATEGORIAS\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\CARGA_CATEGORIAS\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CARGA_CATEGORIAS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_CATEGORIAS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CARGA_CATEGORIAS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_CATEGORIAS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CARGA_CATEGORIAS\Merge Join"
               componentClassID="Microsoft.MergeJoin"
               contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
-              name="FILTRAR CATEGORIAS"
+              name="Merge Join"
               version="1">
               <properties>
                 <property
@@ -175,57 +252,58 @@
               </properties>
               <inputs>
                 <input
-                  refId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Inputs[Merge Join Left Input]"
+                  refId="Package\CARGA_CATEGORIAS\Merge Join.Inputs[Merge Join Left Input]"
                   hasSideEffects="true"
                   name="Merge Join Left Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Inputs[Merge Join Left Input].Columns[CategoryID]"
+                      refId="Package\CARGA_CATEGORIAS\Merge Join.Inputs[Merge Join Left Input].Columns[CategoryID]"
                       cachedDataType="i4"
                       cachedName="CategoryID"
                       cachedSortKeyPosition="1"
-                      lineageId="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA.Outputs[Sort Output].Columns[CategoryID]" />
+                      lineageId="Package\CARGA_CATEGORIAS\Sort.Outputs[Sort Output].Columns[CategoryID]" />
                     <inputColumn
-                      refId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Inputs[Merge Join Left Input].Columns[CategoryName]"
-                      cachedDataType="wstr"
+                      refId="Package\CARGA_CATEGORIAS\Merge Join.Inputs[Merge Join Left Input].Columns[Copy of CategoryName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
                       cachedLength="15"
-                      cachedName="CategoryName"
-                      lineageId="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA.Outputs[Sort Output].Columns[CategoryName]" />
+                      cachedName="Copy of CategoryName"
+                      lineageId="Package\CARGA_CATEGORIAS\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of CategoryName]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
                 <input
-                  refId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Inputs[Merge Join Right Input]"
+                  refId="Package\CARGA_CATEGORIAS\Merge Join.Inputs[Merge Join Right Input]"
                   hasSideEffects="true"
                   name="Merge Join Right Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Inputs[Merge Join Right Input].Columns[categoria]"
+                      refId="Package\CARGA_CATEGORIAS\Merge Join.Inputs[Merge Join Right Input].Columns[categoriaid]"
                       cachedDataType="i4"
-                      cachedName="categoria"
+                      cachedName="categoriaid"
                       cachedSortKeyPosition="1"
-                      lineageId="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA.Outputs[Sort Output].Columns[categoria]" />
+                      lineageId="Package\CARGA_CATEGORIAS\Sort 1.Outputs[Sort Output].Columns[categoriaid]" />
                     <inputColumn
-                      refId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Inputs[Merge Join Right Input].Columns[nombrecategoria]"
+                      refId="Package\CARGA_CATEGORIAS\Merge Join.Inputs[Merge Join Right Input].Columns[nombrecategoria]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="15"
                       cachedName="nombrecategoria"
-                      lineageId="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA.Outputs[Sort Output].Columns[nombrecategoria]" />
+                      lineageId="Package\CARGA_CATEGORIAS\Sort 1.Outputs[Sort Output].Columns[nombrecategoria]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output]"
+                  refId="Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output]"
                   isSorted="true"
                   name="Merge Join Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output].Columns[CategoryID]"
+                      refId="Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output].Columns[CategoryID]"
                       dataType="i4"
-                      lineageId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output].Columns[CategoryID]"
+                      lineageId="Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output].Columns[CategoryID]"
                       name="CategoryID"
                       sortKeyPosition="1">
                       <properties>
@@ -233,49 +311,50 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Inputs[Merge Join Left Input].Columns[CategoryID]}</property>
+                          name="InputColumnID">#{Package\CARGA_CATEGORIAS\Merge Join.Inputs[Merge Join Left Input].Columns[CategoryID]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output].Columns[CategoryName]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output].Columns[CategoryName]"
-                      name="CategoryName">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Inputs[Merge Join Left Input].Columns[CategoryName]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output].Columns[categoria]"
-                      dataType="i4"
-                      lineageId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output].Columns[categoria]"
-                      name="categoria">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Inputs[Merge Join Right Input].Columns[categoria]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output].Columns[nombrecategoria]"
+                      refId="Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output].Columns[nombrecategoria]"
                       codePage="1252"
                       dataType="str"
                       length="15"
-                      lineageId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output].Columns[nombrecategoria]"
+                      lineageId="Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output].Columns[nombrecategoria]"
                       name="nombrecategoria">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Inputs[Merge Join Right Input].Columns[nombrecategoria]}</property>
+                          name="InputColumnID">#{Package\CARGA_CATEGORIAS\Merge Join.Inputs[Merge Join Right Input].Columns[nombrecategoria]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output].Columns[categoriaid]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output].Columns[categoriaid]"
+                      name="categoriaid">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\CARGA_CATEGORIAS\Merge Join.Inputs[Merge Join Right Input].Columns[categoriaid]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output].Columns[Copy of CategoryName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      lineageId="Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output].Columns[Copy of CategoryName]"
+                      name="Copy of CategoryName">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\CARGA_CATEGORIAS\Merge Join.Inputs[Merge Join Left Input].Columns[Copy of CategoryName]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -488,29 +567,29 @@ FROM Northwind.dbo.Categories;</property>
                       cachedDataType="i4"
                       cachedName="CategoryID"
                       cachedSortKeyPosition="1"
-                      externalMetadataColumnId="Package\CARGA_CATEGORIAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[categoria]"
-                      lineageId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output].Columns[CategoryID]" />
+                      externalMetadataColumnId="Package\CARGA_CATEGORIAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[categoriaid]"
+                      lineageId="Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output].Columns[CategoryID]" />
                     <inputColumn
-                      refId="Package\CARGA_CATEGORIAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[nombrecategoria]"
+                      refId="Package\CARGA_CATEGORIAS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of CategoryName]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="15"
-                      cachedName="nombrecategoria"
+                      cachedName="Copy of CategoryName"
                       externalMetadataColumnId="Package\CARGA_CATEGORIAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[nombrecategoria]"
-                      lineageId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output].Columns[nombrecategoria]" />
+                      lineageId="Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output].Columns[Copy of CategoryName]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\CARGA_CATEGORIAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[categoria]"
-                      dataType="i4"
-                      name="categoria" />
                     <externalMetadataColumn
                       refId="Package\CARGA_CATEGORIAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[nombrecategoria]"
                       codePage="1252"
                       dataType="str"
                       length="15"
                       name="nombrecategoria" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_CATEGORIAS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[categoriaid]"
+                      dataType="i4"
+                      name="categoriaid" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -540,11 +619,11 @@ FROM Northwind.dbo.Categories;</property>
               </outputs>
             </component>
             <component
-              refId="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA"
+              refId="Package\CARGA_CATEGORIAS\Sort"
               componentClassID="Microsoft.Sort"
               contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
-              name="ORDENAR CATEGORIA"
+              name="Sort"
               version="1">
               <properties>
                 <property
@@ -559,11 +638,11 @@ FROM Northwind.dbo.Categories;</property>
               </properties>
               <inputs>
                 <input
-                  refId="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA.Inputs[Sort Input]"
+                  refId="Package\CARGA_CATEGORIAS\Sort.Inputs[Sort Input]"
                   name="Sort Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA.Inputs[Sort Input].Columns[CategoryID]"
+                      refId="Package\CARGA_CATEGORIAS\Sort.Inputs[Sort Input].Columns[CategoryID]"
                       cachedDataType="i4"
                       cachedName="CategoryID"
                       lineageId="Package\CARGA_CATEGORIAS\NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output].Columns[CategoryID]">
@@ -579,7 +658,7 @@ FROM Northwind.dbo.Categories;</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA.Inputs[Sort Input].Columns[CategoryName]"
+                      refId="Package\CARGA_CATEGORIAS\Sort.Inputs[Sort Input].Columns[CategoryName]"
                       cachedDataType="wstr"
                       cachedLength="15"
                       cachedName="CategoryName"
@@ -601,14 +680,14 @@ FROM Northwind.dbo.Categories;</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA.Outputs[Sort Output]"
+                  refId="Package\CARGA_CATEGORIAS\Sort.Outputs[Sort Output]"
                   isSorted="true"
                   name="Sort Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA.Outputs[Sort Output].Columns[CategoryID]"
+                      refId="Package\CARGA_CATEGORIAS\Sort.Outputs[Sort Output].Columns[CategoryID]"
                       dataType="i4"
-                      lineageId="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA.Outputs[Sort Output].Columns[CategoryID]"
+                      lineageId="Package\CARGA_CATEGORIAS\Sort.Outputs[Sort Output].Columns[CategoryID]"
                       name="CategoryID"
                       sortKeyPosition="1">
                       <properties>
@@ -620,10 +699,10 @@ FROM Northwind.dbo.Categories;</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA.Outputs[Sort Output].Columns[CategoryName]"
+                      refId="Package\CARGA_CATEGORIAS\Sort.Outputs[Sort Output].Columns[CategoryName]"
                       dataType="wstr"
                       length="15"
-                      lineageId="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA.Outputs[Sort Output].Columns[CategoryName]"
+                      lineageId="Package\CARGA_CATEGORIAS\Sort.Outputs[Sort Output].Columns[CategoryName]"
                       name="CategoryName">
                       <properties>
                         <property
@@ -639,11 +718,11 @@ FROM Northwind.dbo.Categories;</property>
               </outputs>
             </component>
             <component
-              refId="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA"
+              refId="Package\CARGA_CATEGORIAS\Sort 1"
               componentClassID="Microsoft.Sort"
               contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
-              name="ORDENAR STAGE CATEGORIA"
+              name="Sort 1"
               version="1">
               <properties>
                 <property
@@ -658,27 +737,11 @@ FROM Northwind.dbo.Categories;</property>
               </properties>
               <inputs>
                 <input
-                  refId="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA.Inputs[Sort Input]"
+                  refId="Package\CARGA_CATEGORIAS\Sort 1.Inputs[Sort Input]"
                   name="Sort Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA.Inputs[Sort Input].Columns[categoria]"
-                      cachedDataType="i4"
-                      cachedName="categoria"
-                      lineageId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[categoria]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">1</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA.Inputs[Sort Input].Columns[nombrecategoria]"
+                      refId="Package\CARGA_CATEGORIAS\Sort 1.Inputs[Sort Input].Columns[nombrecategoria]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="15"
@@ -695,36 +758,38 @@ FROM Northwind.dbo.Categories;</property>
                           name="NewSortKeyPosition">0</property>
                       </properties>
                     </inputColumn>
+                    <inputColumn
+                      refId="Package\CARGA_CATEGORIAS\Sort 1.Inputs[Sort Input].Columns[categoriaid]"
+                      cachedDataType="i4"
+                      cachedName="categoriaid"
+                      lineageId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[categoriaid]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA.Outputs[Sort Output]"
+                  refId="Package\CARGA_CATEGORIAS\Sort 1.Outputs[Sort Output]"
                   isSorted="true"
                   name="Sort Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA.Outputs[Sort Output].Columns[categoria]"
-                      dataType="i4"
-                      lineageId="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA.Outputs[Sort Output].Columns[categoria]"
-                      name="categoria"
-                      sortKeyPosition="1">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[categoria]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA.Outputs[Sort Output].Columns[nombrecategoria]"
+                      refId="Package\CARGA_CATEGORIAS\Sort 1.Outputs[Sort Output].Columns[nombrecategoria]"
                       codePage="1252"
                       dataType="str"
                       length="15"
-                      lineageId="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA.Outputs[Sort Output].Columns[nombrecategoria]"
+                      lineageId="Package\CARGA_CATEGORIAS\Sort 1.Outputs[Sort Output].Columns[nombrecategoria]"
                       name="nombrecategoria">
                       <properties>
                         <property
@@ -732,6 +797,20 @@ FROM Northwind.dbo.Categories;</property>
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
                           name="SortColumnId">#{Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[nombrecategoria]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\CARGA_CATEGORIAS\Sort 1.Outputs[Sort Output].Columns[categoriaid]"
+                      dataType="i4"
+                      lineageId="Package\CARGA_CATEGORIAS\Sort 1.Outputs[Sort Output].Columns[categoriaid]"
+                      name="categoriaid"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[categoriaid]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -801,15 +880,6 @@ FROM Northwind.dbo.Categories;</property>
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[categoria]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[categoria]"
-                      lineageId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[categoria]"
-                      name="categoria"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[nombrecategoria]"
                       codePage="1252"
                       dataType="str"
@@ -820,19 +890,28 @@ FROM Northwind.dbo.Categories;</property>
                       lineageId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[nombrecategoria]"
                       name="nombrecategoria"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[categoriaid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[categoriaid]"
+                      lineageId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].Columns[categoriaid]"
+                      name="categoriaid"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[categoria]"
-                      dataType="i4"
-                      name="categoria" />
                     <externalMetadataColumn
                       refId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[nombrecategoria]"
                       codePage="1252"
                       dataType="str"
                       length="15"
                       name="nombrecategoria" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output].ExternalColumns[categoriaid]"
+                      dataType="i4"
+                      name="categoriaid" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -841,10 +920,10 @@ FROM Northwind.dbo.Categories;</property>
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[categoria]"
+                      refId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[categoriaid]"
                       dataType="i4"
-                      lineageId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[categoria]"
-                      name="categoria" />
+                      lineageId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[categoriaid]"
+                      name="categoriaid" />
                     <outputColumn
                       refId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Error Output].Columns[nombrecategoria]"
                       codePage="1252"
@@ -872,10 +951,15 @@ FROM Northwind.dbo.Categories;</property>
           </components>
           <paths>
             <path
+              refId="Package\CARGA_CATEGORIAS.Paths[Data Conversion Output]"
+              endId="Package\CARGA_CATEGORIAS\Merge Join.Inputs[Merge Join Left Input]"
+              name="Data Conversion Output"
+              startId="Package\CARGA_CATEGORIAS\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
               refId="Package\CARGA_CATEGORIAS.Paths[Merge Join Output]"
               endId="Package\CARGA_CATEGORIAS\Conditional Split.Inputs[Conditional Split Input]"
               name="Merge Join Output"
-              startId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Outputs[Merge Join Output]" />
+              startId="Package\CARGA_CATEGORIAS\Merge Join.Outputs[Merge Join Output]" />
             <path
               refId="Package\CARGA_CATEGORIAS.Paths[NEW_COMBINACIONES]"
               endId="Package\CARGA_CATEGORIAS\OLE DB Destination.Inputs[OLE DB Destination Input]"
@@ -883,24 +967,24 @@ FROM Northwind.dbo.Categories;</property>
               startId="Package\CARGA_CATEGORIAS\Conditional Split.Outputs[NEW_COMBINACIONES]" />
             <path
               refId="Package\CARGA_CATEGORIAS.Paths[OLE DB Source Output]"
-              endId="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA.Inputs[Sort Input]"
+              endId="Package\CARGA_CATEGORIAS\Sort.Inputs[Sort Input]"
               name="OLE DB Source Output"
               startId="Package\CARGA_CATEGORIAS\NORTHWIND_CATEGORIA.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\CARGA_CATEGORIAS.Paths[OLE DB Source Output1]"
-              endId="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA.Inputs[Sort Input]"
+              endId="Package\CARGA_CATEGORIAS\Sort 1.Inputs[Sort Input]"
               name="OLE DB Source Output"
               startId="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\CARGA_CATEGORIAS.Paths[Sort Output]"
-              endId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Inputs[Merge Join Left Input]"
+              endId="Package\CARGA_CATEGORIAS\Merge Join.Inputs[Merge Join Right Input]"
               name="Sort Output"
-              startId="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA.Outputs[Sort Output]" />
+              startId="Package\CARGA_CATEGORIAS\Sort 1.Outputs[Sort Output]" />
             <path
               refId="Package\CARGA_CATEGORIAS.Paths[Sort Output1]"
-              endId="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS.Inputs[Merge Join Right Input]"
+              endId="Package\CARGA_CATEGORIAS\Data Conversion.Inputs[Data Conversion Input]"
               name="Sort Output"
-              startId="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA.Outputs[Sort Output]" />
+              startId="Package\CARGA_CATEGORIAS\Sort.Outputs[Sort Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -931,226 +1015,256 @@ FROM Northwind.dbo.Categories;</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="214.666666666667,42.6666666666667"
-          Id="Package\CARGA_CATEGORIAS\NORTHWIND_CATEGORIA"
-          TopLeft="47.4999978765846,56.10526254187" />
+          Size="108,42.6666666666667"
+          Id="Package\CARGA_CATEGORIAS\Sort 1"
+          TopLeft="371.249983403832,147.333331905959" />
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\CARGA_CATEGORIAS\Data Conversion"
+          TopLeft="21.249999050051,232.210523941841" />
         <NodeLayout
           Size="184,42.6666666666667"
           Id="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA"
           TopLeft="328.12498533167,53.3684204666568" />
         <NodeLayout
-          Size="198.666666666667,42.6666666666667"
-          Id="Package\CARGA_CATEGORIAS\ORDENAR CATEGORIA"
-          TopLeft="53.7499975971878,153.947366730741" />
-        <EdgeLayout
-          Id="Package\CARGA_CATEGORIAS.Paths[OLE DB Source Output]"
-          TopLeft="153.95833107022,98.7719292085367">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,55.1754375222042"
-              Start="0,0"
-              End="0,47.6754375222042">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,47.6754375222042" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="214.666666666667,42.6666666666667"
+          Id="Package\CARGA_CATEGORIAS\NORTHWIND_CATEGORIA"
+          TopLeft="47.4999978765846,56.10526254187" />
         <NodeLayout
-          Size="237.333333333334,42.6666666666667"
-          Id="Package\CARGA_CATEGORIAS\ORDENAR STAGE CATEGORIA"
-          TopLeft="335.624984996394,149.157893099118" />
-        <EdgeLayout
-          Id="Package\CARGA_CATEGORIAS.Paths[OLE DB Source Output1]"
-          TopLeft="420.12498533167,96.0350871333235">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="34.1666663313906,53.1228059657944"
-              Start="0,0"
-              End="34.1666663313906,45.6228059657944">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22.5614029828972" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.5614029828972"
-                    Point2="0,26.5614029828972"
-                    Point3="4,26.5614029828972" />
-                  <mssgle:LineSegment
-                    End="30.1666663313906,26.5614029828972" />
-                  <mssgle:CubicBezierSegment
-                    Point1="30.1666663313906,26.5614029828972"
-                    Point2="34.1666663313906,26.5614029828972"
-                    Point3="34.1666663313906,30.5614029828972" />
-                  <mssgle:LineSegment
-                    End="34.1666663313906,45.6228059657944" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="196.666666666667,42.6666666666667"
-          Id="Package\CARGA_CATEGORIAS\FILTRAR CATEGORIAS"
-          TopLeft="221.416658228884,251.105260400809" />
-        <EdgeLayout
-          Id="Package\CARGA_CATEGORIAS.Paths[Sort Output]"
-          TopLeft="153.083330930521,196.614033397408">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="166.666660631697,54.491227003401"
-              Start="0,0"
-              End="166.666660631697,46.991227003401">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.2456135017005" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,23.2456135017005"
-                    Point2="0,27.2456135017005"
-                    Point3="4,27.2456135017005" />
-                  <mssgle:LineSegment
-                    End="162.666660631697,27.2456135017005" />
-                  <mssgle:CubicBezierSegment
-                    Point1="162.666660631697,27.2456135017005"
-                    Point2="166.666660631697,27.2456135017005"
-                    Point3="166.666660631697,31.2456135017005" />
-                  <mssgle:LineSegment
-                    End="166.666660631697,46.991227003401" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\CARGA_CATEGORIAS.Paths[Sort Output1]"
-          TopLeft="454.291651663061,191.824559765785">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-103.097215656398,59.2807006350239"
-              Start="0,0"
-              End="-103.097215656398,51.7807006350239">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.2813853813021" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.2813853813021"
-                    Point2="0,35.2813853813021"
-                    Point3="-4,35.2813853813021" />
-                  <mssgle:LineSegment
-                    End="-99.0972156563984,35.2813853813021" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-99.0972156563984,35.2813853813021"
-                    Point2="-103.097215656398,35.2813853813021"
-                    Point3="-103.097215656398,39.2813853813021" />
-                  <mssgle:LineSegment
-                    End="-103.097215656398,51.7807006350239" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="157.333333333334,42.6666666666667"
-          Id="Package\CARGA_CATEGORIAS\Conditional Split"
-          TopLeft="252.249990779907,326.543856846962" />
-        <EdgeLayout
-          Id="Package\CARGA_CATEGORIAS.Paths[Merge Join Output]"
-          TopLeft="319.749991562218,293.771927067475">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="11.1666658843557,32.7719297794865"
-              Start="0,0"
-              End="11.1666658843557,25.2719297794865">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,12.3859648897432" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12.3859648897432"
-                    Point2="0,16.3859648897432"
-                    Point3="4,16.3859648897432" />
-                  <mssgle:LineSegment
-                    End="7.16666588435567,16.3859648897432" />
-                  <mssgle:CubicBezierSegment
-                    Point1="7.16666588435567,16.3859648897432"
-                    Point2="11.1666658843557,16.3859648897432"
-                    Point3="11.1666658843557,20.3859648897432" />
-                  <mssgle:LineSegment
-                    End="11.1666658843557,25.2719297794865" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="132,42.6666666666667"
+          Id="Package\CARGA_CATEGORIAS\Merge Join"
+          TopLeft="219.999990165234,239.438594162354" />
         <NodeLayout
           Size="174.666666666667,42.6666666666667"
           Id="Package\CARGA_CATEGORIAS\OLE DB Destination"
-          TopLeft="250.999990835786,407.736839363202" />
+          TopLeft="260.374990416691,435.105260115334" />
+        <NodeLayout
+          Size="157.333333333334,42.6666666666667"
+          Id="Package\CARGA_CATEGORIAS\Conditional Split"
+          TopLeft="187.406243678648,328.25438314397" />
+        <NodeLayout
+          Size="98.6666666666667,42.6666666666667"
+          Id="Package\CARGA_CATEGORIAS\Sort"
+          TopLeft="91.2499959208071,153.491226575189" />
         <EdgeLayout
-          Id="Package\CARGA_CATEGORIAS.Paths[NEW_COMBINACIONES]"
-          TopLeft="334.624990807846,369.210523513628">
+          Id="Package\CARGA_CATEGORIAS.Paths[Sort Output1]"
+          TopLeft="140.58332925414,196.157893241856">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,38.5263158495737"
+              EndConnector="-39.9999968707561,36.0526306999849"
               Start="0,0"
-              End="0,31.0263158495737">
+              End="-39.9999968707561,28.5526306999849">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.0263158495737" />
+                    End="0,14.0263153499924" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.0263153499924"
+                    Point2="0,18.0263153499924"
+                    Point3="-4,18.0263153499924" />
+                  <mssgle:LineSegment
+                    End="-35.9999968707561,18.0263153499924" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-35.9999968707561,18.0263153499924"
+                    Point2="-39.9999968707561,18.0263153499924"
+                    Point3="-39.9999968707561,22.0263153499924" />
+                  <mssgle:LineSegment
+                    End="-39.9999968707561,28.5526306999849" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA_CATEGORIAS.Paths[Sort Output]"
+          TopLeft="425.249983403832,189.999998572626">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-118.583326571932,49.4385955897285"
+              Start="0,0"
+              End="-118.583326571932,41.9385955897285">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.307909960378" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.307909960378"
+                    Point2="0,29.307909960378"
+                    Point3="-4,29.307909960378" />
+                  <mssgle:LineSegment
+                    End="-114.583326571932,29.307909960378" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-114.583326571932,29.307909960378"
+                    Point2="-118.583326571932,29.307909960378"
+                    Point3="-118.583326571932,33.307909960378" />
+                  <mssgle:LineSegment
+                    End="-118.583326571932,41.9385955897285" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA_CATEGORIAS.Paths[OLE DB Source Output1]"
+          TopLeft="422.687484367751,96.0350871333235">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.2982447726356"
+              Start="0,0"
+              End="0,43.7982447726356">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.7982447726356" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA_CATEGORIAS.Paths[OLE DB Source Output]"
+          TopLeft="154.833331209918,98.7719292085367">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.2500019557775,54.719297366652"
+              Start="0,0"
+              End="-14.2500019557775,47.219297366652">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.359648683326" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.359648683326"
+                    Point2="0,27.359648683326"
+                    Point3="-4,27.359648683326" />
+                  <mssgle:LineSegment
+                    End="-10.2500019557775,27.359648683326" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.2500019557775,27.359648683326"
+                    Point2="-14.2500019557775,27.359648683326"
+                    Point3="-14.2500019557775,31.359648683326" />
+                  <mssgle:LineSegment
+                    End="-14.2500019557775,47.219297366652" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA_CATEGORIAS.Paths[NEW_COMBINACIONES]"
+          TopLeft="266.072910345315,370.921049810637">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="81.6354134047092,64.1842103046969"
+              Start="0,0"
+              End="81.6354134047092,56.6842103046969">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.0921051523484" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.0921051523484"
+                    Point2="0,32.0921051523484"
+                    Point3="4,32.0921051523484" />
+                  <mssgle:LineSegment
+                    End="77.6354134047092,32.0921051523484" />
+                  <mssgle:CubicBezierSegment
+                    Point1="77.6354134047092,32.0921051523484"
+                    Point2="81.6354134047092,32.0921051523484"
+                    Point3="81.6354134047092,36.0921051523484" />
+                  <mssgle:LineSegment
+                    End="81.6354134047092,56.6842103046969" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-52.76748046875,10.0697985497868,105.5349609375,10.88671875"
+              BoundingBox="-11.9497737663954,37.0921051523484,105.5349609375,10.88671875"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA_CATEGORIAS.Paths[Merge Join Output]"
+          TopLeft="285.999990165234,282.105260829021">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19.9270798199189,46.1491223149494"
+              Start="0,0"
+              End="-19.9270798199189,38.6491223149494">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.0745611574747" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.0745611574747"
+                    Point2="0,23.0745611574747"
+                    Point3="-4,23.0745611574747" />
+                  <mssgle:LineSegment
+                    End="-15.9270798199189,23.0745611574747" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15.9270798199189,23.0745611574747"
+                    Point2="-19.9270798199189,23.0745611574747"
+                    Point3="-19.9270798199189,27.0745611574747" />
+                  <mssgle:LineSegment
+                    End="-19.9270798199189,38.6491223149494" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA_CATEGORIAS.Paths[Data Conversion Output]"
+          TopLeft="179.916665716718,257.157892385431">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.0833244485164,0"
+              Start="0,0"
+              End="32.5833244485164,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="32.5833244485164,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\CARGA_CATEGORIAS\NORTHWIND_CATEGORIA">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\CARGA_CATEGORIAS\STAGE_CATEGORIA">
     <Properties>
@@ -1161,6 +1275,14 @@ FROM Northwind.dbo.Categories;</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CARGA_CATEGORIAS\NORTHWIND_CATEGORIA">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

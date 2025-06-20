@@ -2,7 +2,7 @@
 <BuildLog xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ProjectInfo>
     <Name>Stage_Nortwind</Name>
-    <LastWriteTime>2025-06-09T23:28:45.8141116Z</LastWriteTime>
+    <LastWriteTime>2025-06-10T23:31:36.0689728Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
@@ -13,32 +13,32 @@
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>001.Stage _Empleado.dtsx</Name>
-      <LastWriteTime>2025-06-09T22:43:36.0117693Z</LastWriteTime>
+      <LastWriteTime>2025-06-10T23:19:35.3880247Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>02.Stage Categorias.dtsx</Name>
-      <LastWriteTime>2025-06-06T23:40:36.7925489Z</LastWriteTime>
+      <LastWriteTime>2025-06-11T05:08:55.5421923Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>06_Stage Provedor.dtsx</Name>
-      <LastWriteTime>2025-05-23T22:23:05.9739292Z</LastWriteTime>
+      <LastWriteTime>2025-06-10T23:21:54.7289848Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>CARGA_MASTER.dtsx</Name>
-      <LastWriteTime>2025-06-09T22:17:13.37699Z</LastWriteTime>
+      <LastWriteTime>2025-06-10T23:42:56.8362416Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>04.Stage_Ventas.dtsx</Name>
-      <LastWriteTime>2025-06-06T05:07:04.0787247Z</LastWriteTime>
+      <LastWriteTime>2025-06-10T23:28:04.1807917Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Limpiar_Stage.dtsx</Name>
-      <LastWriteTime>2025-06-09T22:22:28.9947882Z</LastWriteTime>
+      <LastWriteTime>2025-06-10T23:34:44.1876779Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
@@ -48,12 +48,12 @@
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>07-Stage-Tiempo (1).dtsx</Name>
-      <LastWriteTime>2025-06-09T22:17:21.1518553Z</LastWriteTime>
+      <LastWriteTime>2025-06-10T23:26:30.0937182Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
-      <Name>03-Stage_cliente (1).dtsx</Name>
-      <LastWriteTime>2025-06-09T23:40:46.4437049Z</LastWriteTime>
+      <Name>03-Stage_cliente.dtsx</Name>
+      <LastWriteTime>2025-06-10T23:15:08.2842293Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

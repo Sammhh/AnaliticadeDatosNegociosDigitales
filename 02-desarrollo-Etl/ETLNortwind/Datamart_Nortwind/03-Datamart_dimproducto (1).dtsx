@@ -11,8 +11,8 @@
   DTS:LocaleID="2058"
   DTS:ObjectName="03-Datamart_dimproducto"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{F036FABD-2516-4075-BC9C-D9C7E3CAC95E}">
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{620B5999-D62A-45D4-87B5-56BD04AD1F9A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -390,7 +390,7 @@
                   dataType="System.Int32"
                   description="Specifies the type of join to perform."
                   name="JoinType"
-                  typeConverter="JoinType">2</property>
+                  typeConverter="JoinType">1</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the number of columns in the ordering key."
@@ -1222,7 +1222,7 @@ on p.categoriaid = c.categoriaid</property>
         <NodeLayout
           Size="199.333333333334,41.3333333333334"
           Id="Package\CARGA DIM PRODUCTO"
-          TopLeft="124.999993170301,63.2666662267182" />
+          TopLeft="124.999993170301,64.6350872643248" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1244,9 +1244,21 @@ on p.categoriaid = c.categoriaid</property>
           Id="Package\CARGA DIM PRODUCTO\ORDENAR DIM PRODUCTO"
           TopLeft="659.999963939191,162.066665539675" />
         <NodeLayout
+          Size="132,42.6666666666667"
+          Id="Package\CARGA DIM PRODUCTO\Merge Join"
+          TopLeft="476.309504092095,259.022553546961" />
+        <NodeLayout
+          Size="157.333333333334,42.6666666666667"
+          Id="Package\CARGA DIM PRODUCTO\Conditional Split"
+          TopLeft="481.904742746127,332.330823418742" />
+        <NodeLayout
           Size="176,41.3333333333334"
           Id="Package\CARGA DIM PRODUCTO\STAGE PRODUCTO"
           TopLeft="105.833327550855,71.9333328331179" />
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\CARGA DIM PRODUCTO\OLE DB Destination"
+          TopLeft="464.04760068726,410.526311281976" />
         <EdgeLayout
           Id="Package\CARGA DIM PRODUCTO.Paths[Salida de origen de OLE DB1]"
           TopLeft="671.666634339427,131.466666039891">
@@ -1315,10 +1327,40 @@ on p.categoriaid = c.categoriaid</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="132,42.6666666666667"
-          Id="Package\CARGA DIM PRODUCTO\Merge Join"
-          TopLeft="476.309504092095,259.022553546961" />
+        <EdgeLayout
+          Id="Package\CARGA DIM PRODUCTO.Paths[Salida de ordenación1]"
+          TopLeft="767.333297272524,203.399998873008">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-204.357126513763,55.6225546739525"
+              Start="0,0"
+              End="-204.357126513763,48.1225546739525">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.9738497767743" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.9738497767743"
+                    Point2="0,32.9738497767743"
+                    Point3="-4,32.9738497767743" />
+                  <mssgle:LineSegment
+                    End="-200.357126513763,32.9738497767743" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-200.357126513763,32.9738497767743"
+                    Point2="-204.357126513763,32.9738497767743"
+                    Point3="-204.357126513763,36.9738497767743" />
+                  <mssgle:LineSegment
+                    End="-204.357126513763,48.1225546739525" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\CARGA DIM PRODUCTO.Paths[Salida de ordenación]"
           TopLeft="299.499989937577,205.133332194288">
@@ -1354,82 +1396,6 @@ on p.categoriaid = c.categoriaid</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\CARGA DIM PRODUCTO.Paths[Salida de ordenación1]"
-          TopLeft="767.333297272524,203.399998873008">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-204.357126513763,55.6225546739525"
-              Start="0,0"
-              End="-204.357126513763,48.1225546739525">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,28.9738497767743" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,28.9738497767743"
-                    Point2="0,32.9738497767743"
-                    Point3="-4,32.9738497767743" />
-                  <mssgle:LineSegment
-                    End="-200.357126513763,32.9738497767743" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-200.357126513763,32.9738497767743"
-                    Point2="-204.357126513763,32.9738497767743"
-                    Point3="-204.357126513763,36.9738497767743" />
-                  <mssgle:LineSegment
-                    End="-204.357126513763,48.1225546739525" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="157.333333333334,42.6666666666667"
-          Id="Package\CARGA DIM PRODUCTO\Conditional Split"
-          TopLeft="481.904742746127,332.330823418742" />
-        <EdgeLayout
-          Id="Package\CARGA DIM PRODUCTO.Paths[Merge Join Output]"
-          TopLeft="542.309504092095,301.689220213628">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="18.2619053206982,30.6416032051147"
-              Start="0,0"
-              End="18.2619053206982,23.1416032051147">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,11.3208016025574" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.3208016025574"
-                    Point2="0,15.3208016025574"
-                    Point3="4,15.3208016025574" />
-                  <mssgle:LineSegment
-                    End="14.2619053206982,15.3208016025574" />
-                  <mssgle:CubicBezierSegment
-                    Point1="14.2619053206982,15.3208016025574"
-                    Point2="18.2619053206982,15.3208016025574"
-                    Point3="18.2619053206982,19.3208016025574" />
-                  <mssgle:LineSegment
-                    End="18.2619053206982,23.1416032051147" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\CARGA DIM PRODUCTO\OLE DB Destination"
-          TopLeft="464.04760068726,410.526311281976" />
-        <EdgeLayout
           Id="Package\CARGA DIM PRODUCTO.Paths[PRODUCTOS NEW]"
           TopLeft="560.571409412793,374.997490085409">
           <EdgeLayout.Curve>
@@ -1463,6 +1429,40 @@ on p.categoriaid = c.categoriaid</property>
             <mssgm:EdgeLabel
               BoundingBox="-45.6973861335998,22.7644105982835,82.204296875,9.5732421875"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA DIM PRODUCTO.Paths[Merge Join Output]"
+          TopLeft="542.309504092095,301.689220213628">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="18.2619053206982,30.6416032051147"
+              Start="0,0"
+              End="18.2619053206982,23.1416032051147">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.3208016025574" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.3208016025574"
+                    Point2="0,15.3208016025574"
+                    Point3="4,15.3208016025574" />
+                  <mssgle:LineSegment
+                    End="14.2619053206982,15.3208016025574" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.2619053206982,15.3208016025574"
+                    Point2="18.2619053206982,15.3208016025574"
+                    Point3="18.2619053206982,19.3208016025574" />
+                  <mssgle:LineSegment
+                    End="18.2619053206982,23.1416032051147" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

@@ -11,8 +11,8 @@
   DTS:LocaleID="2058"
   DTS:ObjectName="Limpiar_Datamart"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{CBFD68C4-4F22-4813-A44E-5389B77BC7BA}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{FD98838E-7BA3-4093-9AE4-7BDCACB0D235}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -164,13 +164,25 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="191.2,41.6"
-          Id="Package\LIMPIAR FACTVENTAS"
-          TopLeft="204.166655511492,72.7999994937579" />
-        <NodeLayout
-          Size="188.8,41.6"
+          Size="188.666666666667,41.3333333333334"
           Id="Package\LIMPIAR DIM CLIENTE"
           TopLeft="199.999989072482,182.866665395035" />
+        <NodeLayout
+          Size="202.666666666667,41.3333333333334"
+          Id="Package\LIMPIAR DIM EMPLEADO"
+          TopLeft="193.333322770066,287.733331332472" />
+        <NodeLayout
+          Size="204,41.3333333333334"
+          Id="Package\LIMPIAR DIM PRODUCTO"
+          TopLeft="578.333301734595,289.466664653752" />
+        <NodeLayout
+          Size="184.666666666667,41.3333333333334"
+          Id="Package\LIMPIAR DIM TIEMPO"
+          TopLeft="594.999967490635,166.399998842875" />
+        <NodeLayout
+          Size="191.333333333334,41.3333333333334"
+          Id="Package\LIMPIAR FACTVENTAS"
+          TopLeft="204.166655511492,72.7999994937579" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
           TopLeft="297.083322291987,114.399999493758">
@@ -193,10 +205,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="202.4,41.6"
-          Id="Package\LIMPIAR DIM EMPLEADO"
-          TopLeft="193.333322770066,287.733331332472" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 1]"
           TopLeft="294.466655921274,224.466665395035">
@@ -219,10 +227,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="204,41.6"
-          Id="Package\LIMPIAR DIM PRODUCTO"
-          TopLeft="578.333301734595,289.466664653752" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 2]"
           TopLeft="395.733322770066,309.399997993112">
@@ -245,10 +249,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="184.8,41.6"
-          Id="Package\LIMPIAR DIM TIEMPO"
-          TopLeft="594.999967490635,166.399998842875" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 3]"
           TopLeft="683.866634612615,289.466664653752">

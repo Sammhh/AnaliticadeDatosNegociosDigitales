@@ -11,8 +11,8 @@
   DTS:LocaleID="2058"
   DTS:ObjectName="07-Stage-Tiempo"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{931A8E0C-4C29-4AEB-91A9-59D4AF58A84B}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{B1707663-FE7E-4CB5-A3D3-1535C9CE4E99}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1355,8 +1355,8 @@
               <connections>
                 <connection
                   refId="Package\CARGA STAGE TIEMPO\STAGE TIEMPO.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JHPBV9A.stage_northwind]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JHPBV9A.stage_northwind]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JHPBV9A.stage_northwind 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JHPBV9A.stage_northwind 1]"
                   description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
                   name="OleDbConnection" />
               </connections>
@@ -1437,6 +1437,16 @@
                       lineageId="Package\CARGA STAGE TIEMPO\STAGE TIEMPO.Outputs[Salida de origen de OLE DB].Columns[Tiempo_DiaDeMes]"
                       name="Tiempo_DiaDeMes"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CARGA STAGE TIEMPO\STAGE TIEMPO.Outputs[Salida de origen de OLE DB].Columns[Tiempo_DiadeSemana]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CARGA STAGE TIEMPO\STAGE TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_DiadeSemana]"
+                      length="10"
+                      lineageId="Package\CARGA STAGE TIEMPO\STAGE TIEMPO.Outputs[Salida de origen de OLE DB].Columns[Tiempo_DiadeSemana]"
+                      name="Tiempo_DiadeSemana"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1472,6 +1482,11 @@
                       refId="Package\CARGA STAGE TIEMPO\STAGE TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_DiaDeMes]"
                       dataType="i4"
                       name="Tiempo_DiaDeMes" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA STAGE TIEMPO\STAGE TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[Tiempo_DiadeSemana]"
+                      dataType="wstr"
+                      length="10"
+                      name="Tiempo_DiadeSemana" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -1519,6 +1534,12 @@
                       dataType="i4"
                       lineageId="Package\CARGA STAGE TIEMPO\STAGE TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_DiaDeMes]"
                       name="Tiempo_DiaDeMes" />
+                    <outputColumn
+                      refId="Package\CARGA STAGE TIEMPO\STAGE TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_DiadeSemana]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\CARGA STAGE TIEMPO\STAGE TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[Tiempo_DiadeSemana]"
+                      name="Tiempo_DiadeSemana" />
                     <outputColumn
                       refId="Package\CARGA STAGE TIEMPO\STAGE TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
                       dataType="i4"
@@ -1651,6 +1672,12 @@
                       cachedName="DiaDeMes"
                       externalMetadataColumnId="Package\CARGA STAGE TIEMPO\TABLA_STAGE_TIEMPO.Inputs[Entrada de destino de OLE DB].ExternalColumns[Tiempo_DiaDeMes]"
                       lineageId="Package\CARGA STAGE TIEMPO\LEFT JOIN ORDERS_STAGE_TIEMPO.Outputs[Salida de combinación de mezcla].Columns[DiaDeMes]" />
+                    <inputColumn
+                      refId="Package\CARGA STAGE TIEMPO\TABLA_STAGE_TIEMPO.Inputs[Entrada de destino de OLE DB].Columns[DiaDeSemana]"
+                      cachedDataType="i4"
+                      cachedName="DiaDeSemana"
+                      externalMetadataColumnId="Package\CARGA STAGE TIEMPO\TABLA_STAGE_TIEMPO.Inputs[Entrada de destino de OLE DB].ExternalColumns[Tiempo_DiadeSemana]"
+                      lineageId="Package\CARGA STAGE TIEMPO\LEFT JOIN ORDERS_STAGE_TIEMPO.Outputs[Salida de combinación de mezcla].Columns[DiaDeSemana]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1686,6 +1713,11 @@
                       refId="Package\CARGA STAGE TIEMPO\TABLA_STAGE_TIEMPO.Inputs[Entrada de destino de OLE DB].ExternalColumns[Tiempo_DiaDeMes]"
                       dataType="i4"
                       name="Tiempo_DiaDeMes" />
+                    <externalMetadataColumn
+                      refId="Package\CARGA STAGE TIEMPO\TABLA_STAGE_TIEMPO.Inputs[Entrada de destino de OLE DB].ExternalColumns[Tiempo_DiadeSemana]"
+                      dataType="wstr"
+                      length="10"
+                      name="Tiempo_DiadeSemana" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1792,6 +1824,10 @@
           Id="Package\CARGA STAGE TIEMPO\STAGE TIEMPO"
           TopLeft="718.333294085332,109.199999240637" />
         <NodeLayout
+          Size="197.333333333334,41.3333333333334"
+          Id="Package\CARGA STAGE TIEMPO\TABLA_STAGE_TIEMPO"
+          TopLeft="386.666645540133,542.533329560624" />
+        <NodeLayout
           Size="177.333333333334,41.3333333333334"
           Id="Package\CARGA STAGE TIEMPO\ORDENAR ORDERS"
           TopLeft="164.166657696996,194.999998643994" />
@@ -1799,44 +1835,6 @@
           Size="166.666666666667,41.3333333333334"
           Id="Package\CARGA STAGE TIEMPO\FECHAS NUEVAS"
           TopLeft="399.166644857163,434.199996980627" />
-        <NodeLayout
-          Size="197.333333333334,41.3333333333334"
-          Id="Package\CARGA STAGE TIEMPO\TABLA_STAGE_TIEMPO"
-          TopLeft="386.666645540133,542.533329560624" />
-        <EdgeLayout
-          Id="Package\CARGA STAGE TIEMPO.Paths[Salida de origen de OLE DB1]"
-          TopLeft="796.333294085332,150.799999240637">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-124.899991667767,38.1333327788775"
-              Start="0,0"
-              End="-124.899991667767,30.6333327788775">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,15.0666663894388" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.0666663894388"
-                    Point2="0,19.0666663894388"
-                    Point3="-4,19.0666663894388" />
-                  <mssgle:LineSegment
-                    End="-120.899991667767,19.0666663894388" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-120.899991667767,19.0666663894388"
-                    Point2="-124.899991667767,19.0666663894388"
-                    Point3="-124.899991667767,23.0666663894388" />
-                  <mssgle:LineSegment
-                    End="-124.899991667767,30.6333327788775" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\CARGA STAGE TIEMPO.Paths[Salida de origen de OLE DB]"
           TopLeft="181.033328643607,145.599999276797">
@@ -1983,6 +1981,40 @@
             <mssgm:EdgeLabel
               BoundingBox="-47.8711328125,21.6166662899984,78.0049609375,10.8671875"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CARGA STAGE TIEMPO.Paths[Salida de origen de OLE DB1]"
+          TopLeft="796.333294085332,150.799999240637">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-124.899991667767,38.1333327788775"
+              Start="0,0"
+              End="-124.899991667767,30.6333327788775">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.0666663894388" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.0666663894388"
+                    Point2="0,19.0666663894388"
+                    Point3="-4,19.0666663894388" />
+                  <mssgle:LineSegment
+                    End="-120.899991667767,19.0666663894388" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-120.899991667767,19.0666663894388"
+                    Point2="-124.899991667767,19.0666663894388"
+                    Point3="-124.899991667767,23.0666663894388" />
+                  <mssgle:LineSegment
+                    End="-124.899991667767,30.6333327788775" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

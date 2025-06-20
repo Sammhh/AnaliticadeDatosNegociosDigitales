@@ -11,8 +11,8 @@
   DTS:LocaleID="3082"
   DTS:ObjectName="001 Stage _Empleado"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{609181A4-9CC0-487F-8990-97FECA4B64B8}">
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{22113E37-915E-452F-9B1A-4D50C24749D3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1204,18 +1204,6 @@ FROM Northwind.dbo.Employees;</property>
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\CARGA _STAGE_EMPLEADO\STAGE_EMPLEADO.Inputs[OLE DB Destination Input].Columns[Empleadoid]"
-                      cachedDataType="i4"
-                      cachedName="Empleadoid"
-                      externalMetadataColumnId="Package\CARGA _STAGE_EMPLEADO\STAGE_EMPLEADO.Inputs[OLE DB Destination Input].ExternalColumns[Empleadoid]"
-                      lineageId="Package\CARGA _STAGE_EMPLEADO\JOIN EMPLOYEE_EMPLEADO.Outputs[Merge Join Output].Columns[Empleadoid]" />
-                    <inputColumn
-                      refId="Package\CARGA _STAGE_EMPLEADO\STAGE_EMPLEADO.Inputs[OLE DB Destination Input].Columns[fecha_Contratacion]"
-                      cachedDataType="dbDate"
-                      cachedName="fecha_Contratacion"
-                      externalMetadataColumnId="Package\CARGA _STAGE_EMPLEADO\STAGE_EMPLEADO.Inputs[OLE DB Destination Input].ExternalColumns[fecha_Contratacion]"
-                      lineageId="Package\CARGA _STAGE_EMPLEADO\JOIN EMPLOYEE_EMPLEADO.Outputs[Merge Join Output].Columns[fecha_Contratacion]" />
-                    <inputColumn
                       refId="Package\CARGA _STAGE_EMPLEADO\STAGE_EMPLEADO.Inputs[OLE DB Destination Input].Columns[Copy of FirstName]"
                       cachedCodepage="1252"
                       cachedDataType="str"
@@ -1231,6 +1219,19 @@ FROM Northwind.dbo.Employees;</property>
                       cachedName="Copy of LastName"
                       externalMetadataColumnId="Package\CARGA _STAGE_EMPLEADO\STAGE_EMPLEADO.Inputs[OLE DB Destination Input].ExternalColumns[apellido]"
                       lineageId="Package\CARGA _STAGE_EMPLEADO\JOIN EMPLOYEE_EMPLEADO.Outputs[Merge Join Output].Columns[Copy of LastName]" />
+                    <inputColumn
+                      refId="Package\CARGA _STAGE_EMPLEADO\STAGE_EMPLEADO.Inputs[OLE DB Destination Input].Columns[HireDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="HireDate"
+                      externalMetadataColumnId="Package\CARGA _STAGE_EMPLEADO\STAGE_EMPLEADO.Inputs[OLE DB Destination Input].ExternalColumns[fecha_Contratacion]"
+                      lineageId="Package\CARGA _STAGE_EMPLEADO\JOIN EMPLOYEE_EMPLEADO.Outputs[Merge Join Output].Columns[HireDate]" />
+                    <inputColumn
+                      refId="Package\CARGA _STAGE_EMPLEADO\STAGE_EMPLEADO.Inputs[OLE DB Destination Input].Columns[EmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\CARGA _STAGE_EMPLEADO\STAGE_EMPLEADO.Inputs[OLE DB Destination Input].ExternalColumns[Empleadoid]"
+                      lineageId="Package\CARGA _STAGE_EMPLEADO\JOIN EMPLOYEE_EMPLEADO.Outputs[Merge Join Output].Columns[EmployeeID]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1351,7 +1352,7 @@ FROM Northwind.dbo.Employees;</property>
         <NodeLayout
           Size="181.333333333334,42.6666666666667"
           Id="Package\CARGA _STAGE_EMPLEADO\STAGE_EMPLEADO"
-          TopLeft="325.260414606115,539.890348426241" />
+          TopLeft="347.135413628226,565.206137621963" />
         <NodeLayout
           Size="158.666666666667,42.6666666666667"
           Id="Package\CARGA _STAGE_EMPLEADO\Data Conversion"
@@ -1542,25 +1543,37 @@ FROM Northwind.dbo.Employees;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\CARGA _STAGE_EMPLEADO.Paths[EMPLEADOS_NUEVOS]"
-          TopLeft="414.119789288302,514.118418932229">
+          TopLeft="412.312497303822,514.11841893223">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,25.7719294940116"
+              EndConnector="25.4895829910713,51.087718689733"
               Start="0,0"
-              End="0,18.2719294940116">
+              End="25.4895829910713,43.587718689733">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,18.2719294940116" />
+                    End="0,21.5438593448665" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5438593448665"
+                    Point2="0,25.5438593448665"
+                    Point3="4,25.5438593448665" />
+                  <mssgle:LineSegment
+                    End="21.4895829910713,25.5438593448665" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.4895829910713,25.5438593448665"
+                    Point2="25.4895829910713,25.5438593448665"
+                    Point3="25.4895829910713,29.5438593448665" />
+                  <mssgle:LineSegment
+                    End="25.4895829910713,43.587718689733" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-49.39248046875,3.6926053720058,98.7849609375,10.88671875"
+              BoundingBox="-36.6476889732144,30.5438593448665,98.7849609375,10.88671875"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

@@ -1,18 +1,18 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/22/2025 3:36:52 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-IR5V3MM"
   DTS:CreatorName="DESKTOP-IR5V3MM\c411i"
-  DTS:DTSID="{F15433EB-FCD0-4AD0-B7F0-5AF80C8F680C}"
+  DTS:DTSID="{3E14ACDC-0770-4E8D-89A2-408ABD322533}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="3082"
-  DTS:ObjectName="03-Stage_Cliente"
+  DTS:ObjectName="03-Stage_cliente"
   DTS:PackageType="5"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{DA3F0AF3-9044-4926-9DB9-343EDA79B26B}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{40A44435-990B-4791-A8E4-2178BBDD58F6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -659,7 +659,7 @@
                   dataType="System.Int32"
                   description="Specifies the type of join to perform."
                   name="JoinType"
-                  typeConverter="JoinType">2</property>
+                  typeConverter="JoinType">1</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the number of columns in the ordering key."
@@ -2125,73 +2125,51 @@ FROM Northwind.dbo.Customers;</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="108,42.6666666666667"
+          Id="Package\CARGA STAGE_CLIENTE\Sort 1"
+          TopLeft="447.321408574603,180.827065683727" />
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\CARGA STAGE_CLIENTE\conversión de datos"
+          TopLeft="126.249994356185,94.4210515948545" />
+        <NodeLayout
+          Size="132,42.6666666666667"
+          Id="Package\CARGA STAGE_CLIENTE\Merge Join"
+          TopLeft="249.107131721186,292.255635888835" />
+        <NodeLayout
           Size="220,42.6666666666667"
           Id="Package\CARGA STAGE_CLIENTE\NORTHWIND_CUSTOMERS"
           TopLeft="95.6249957252295,8.21052622563951" />
         <NodeLayout
           Size="174.666666666667,42.6666666666667"
-          Id="Package\CARGA STAGE_CLIENTE\conversión de datos"
-          TopLeft="126.249994356185,94.4210515948545" />
-        <EdgeLayout
-          Id="Package\CARGA STAGE_CLIENTE.Paths[OLE DB Source Output]"
-          TopLeft="209.604161707374,50.8771928923062">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43.5438587025483"
-              Start="0,0"
-              End="0,36.0438587025483">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,36.0438587025483" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Id="Package\CARGA STAGE_CLIENTE\OLE DB Destination"
+          TopLeft="235.089275204976,492.030070444365" />
         <NodeLayout
           Size="173.333333333334,42.6666666666667"
           Id="Package\CARGA STAGE_CLIENTE\CLIENTES_STAGE"
           TopLeft="466.071407736413,24.4360899572605" />
         <NodeLayout
+          Size="157.333333333334,42.6666666666667"
+          Id="Package\CARGA STAGE_CLIENTE\Conditional Split"
+          TopLeft="229.464275456433,384.624055927279" />
+        <NodeLayout
           Size="98.6666666666667,42.6666666666667"
           Id="Package\CARGA STAGE_CLIENTE\Sort"
           TopLeft="151.785707500364,196.466163256374" />
-        <NodeLayout
-          Size="108,42.6666666666667"
-          Id="Package\CARGA STAGE_CLIENTE\Sort 1"
-          TopLeft="447.321408574603,180.827065683727" />
         <EdgeLayout
-          Id="Package\CARGA STAGE_CLIENTE.Paths[OLE DB Source Output1]"
-          TopLeft="552.738074403079,67.1027566239271">
+          Id="Package\CARGA STAGE_CLIENTE.Paths[Merge Join Output]"
+          TopLeft="311.619036922143,334.922302555502">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-51.4166658284765,113.7243090598"
+              EndConnector="0,49.7017533717776"
               Start="0,0"
-              End="-51.4166658284765,106.2243090598">
+              End="0,42.2017533717776">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.8621545299001" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,52.8621545299001"
-                    Point2="0,56.8621545299001"
-                    Point3="-4,56.8621545299001" />
-                  <mssgle:LineSegment
-                    End="-47.4166658284765,56.8621545299001" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-47.4166658284765,56.8621545299001"
-                    Point2="-51.4166658284765,56.8621545299001"
-                    Point3="-51.4166658284765,60.8621545299001" />
-                  <mssgle:LineSegment
-                    End="-51.4166658284765,106.2243090598" />
+                    End="0,42.2017533717776" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2234,10 +2212,40 @@ FROM Northwind.dbo.Customers;</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="132,42.6666666666667"
-          Id="Package\CARGA STAGE_CLIENTE\Merge Join"
-          TopLeft="249.107131721186,292.255635888835" />
+        <EdgeLayout
+          Id="Package\CARGA STAGE_CLIENTE.Paths[Sort Output1]"
+          TopLeft="501.321408574603,223.493732350394">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-165.54761018675,68.7619035384411"
+              Start="0,0"
+              End="-165.54761018675,61.2619035384411">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.7630446126088" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.7630446126088"
+                    Point2="0,40.7630446126088"
+                    Point3="-4,40.7630446126088" />
+                  <mssgle:LineSegment
+                    End="-161.54761018675,40.7630446126088" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-161.54761018675,40.7630446126088"
+                    Point2="-165.54761018675,40.7630446126088"
+                    Point3="-165.54761018675,44.7630446126088" />
+                  <mssgle:LineSegment
+                    End="-165.54761018675,61.2619035384411" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\CARGA STAGE_CLIENTE.Paths[Sort Output]"
           TopLeft="201.119040833698,239.132829923041">
@@ -2273,31 +2281,31 @@ FROM Northwind.dbo.Customers;</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\CARGA STAGE_CLIENTE.Paths[Sort Output1]"
-          TopLeft="501.321408574603,223.493732350394">
+          Id="Package\CARGA STAGE_CLIENTE.Paths[OLE DB Source Output1]"
+          TopLeft="552.738074403079,67.1027566239271">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-165.54761018675,68.7619035384411"
+              EndConnector="-51.4166658284765,113.7243090598"
               Start="0,0"
-              End="-165.54761018675,61.2619035384411">
+              End="-51.4166658284765,106.2243090598">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.7630446126088" />
+                    End="0,52.8621545299001" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,36.7630446126088"
-                    Point2="0,40.7630446126088"
-                    Point3="-4,40.7630446126088" />
+                    Point1="0,52.8621545299001"
+                    Point2="0,56.8621545299001"
+                    Point3="-4,56.8621545299001" />
                   <mssgle:LineSegment
-                    End="-161.54761018675,40.7630446126088" />
+                    End="-47.4166658284765,56.8621545299001" />
                   <mssgle:CubicBezierSegment
-                    Point1="-161.54761018675,40.7630446126088"
-                    Point2="-165.54761018675,40.7630446126088"
-                    Point3="-165.54761018675,44.7630446126088" />
+                    Point1="-47.4166658284765,56.8621545299001"
+                    Point2="-51.4166658284765,56.8621545299001"
+                    Point3="-51.4166658284765,60.8621545299001" />
                   <mssgle:LineSegment
-                    End="-165.54761018675,61.2619035384411" />
+                    End="-51.4166658284765,106.2243090598" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2306,24 +2314,20 @@ FROM Northwind.dbo.Customers;</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="157.333333333334,42.6666666666667"
-          Id="Package\CARGA STAGE_CLIENTE\Conditional Split"
-          TopLeft="229.464275456433,367.518792957197" />
         <EdgeLayout
-          Id="Package\CARGA STAGE_CLIENTE.Paths[Merge Join Output]"
-          TopLeft="311.619036922143,334.922302555502">
+          Id="Package\CARGA STAGE_CLIENTE.Paths[OLE DB Source Output]"
+          TopLeft="209.604161707374,50.8771928923062">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,32.5964904016956"
+              EndConnector="0,43.5438587025483"
               Start="0,0"
-              End="0,25.0964904016956">
+              End="0,36.0438587025483">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,25.0964904016956" />
+                    End="0,36.0438587025483" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2332,43 +2336,39 @@ FROM Northwind.dbo.Customers;</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="174.666666666667,42.6666666666667"
-          Id="Package\CARGA STAGE_CLIENTE\OLE DB Destination"
-          TopLeft="248.214274618243,450.977439316167" />
         <EdgeLayout
           Id="Package\CARGA STAGE_CLIENTE.Paths[NUEVOS_CLIENTES]"
-          TopLeft="308.1309421231,410.185459623864">
+          TopLeft="308.1309421231,427.290722593946">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="27.4166658284763,40.7919796923032"
+              EndConnector="14.2916664152098,64.7393478504187"
               Start="0,0"
-              End="27.4166658284763,33.2919796923032">
+              End="14.2916664152098,57.2393478504187">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.3959898461516" />
+                    End="0,28.3696739252093" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.3959898461516"
-                    Point2="0,20.3959898461516"
-                    Point3="4,20.3959898461516" />
+                    Point1="0,28.3696739252093"
+                    Point2="0,32.3696739252093"
+                    Point3="4,32.3696739252093" />
                   <mssgle:LineSegment
-                    End="23.4166658284763,20.3959898461516" />
+                    End="10.2916664152098,32.3696739252093" />
                   <mssgle:CubicBezierSegment
-                    Point1="23.4166658284763,20.3959898461516"
-                    Point2="27.4166658284763,20.3959898461516"
-                    Point3="27.4166658284763,24.3959898461516" />
+                    Point1="10.2916664152098,32.3696739252093"
+                    Point2="14.2916664152098,32.3696739252093"
+                    Point3="14.2916664152098,36.3696739252093" />
                   <mssgle:LineSegment
-                    End="27.4166658284763,33.2919796923032" />
+                    End="14.2916664152098,57.2393478504187" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-30.2691475545118,25.3959898461516,87.9549609375,10.88671875"
+              BoundingBox="-36.8316472611451,37.3696739252093,87.9549609375,10.88671875"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2384,7 +2384,7 @@ FROM Northwind.dbo.Customers;</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CARGA STAGE_CLIENTE\CLIENTES_STAGE">
+    design-time-name="Package\CARGA STAGE_CLIENTE\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2397,7 +2397,7 @@ FROM Northwind.dbo.Customers;</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CARGA STAGE_CLIENTE\OLE DB Destination">
+    design-time-name="Package\CARGA STAGE_CLIENTE\CLIENTES_STAGE">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

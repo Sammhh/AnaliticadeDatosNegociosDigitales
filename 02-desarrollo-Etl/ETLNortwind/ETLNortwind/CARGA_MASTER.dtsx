@@ -11,8 +11,8 @@
   DTS:LocaleID="3082"
   DTS:ObjectName="CARGA_MASTER"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{83FBD5F2-9531-4F1B-83C7-9D77F280E539}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{43B5DEBC-4A7C-42C5-B977-FF0B9F1D95BD}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -57,7 +57,7 @@
           <DTS:ObjectData>
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
-              <PackageName>03_Stage_Cliente.dtsx</PackageName>
+              <PackageName>03-Stage_cliente.dtsx</PackageName>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -109,6 +109,23 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>06_Stage Provedor.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Contenedor de secuencias\STAGE_TIEMPO"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{DCDB13FD-6C44-48E5-B81C-6A0600F53F74}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="STAGE_TIEMPO"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>07-Stage-Tiempo (1).dtsx</PackageName>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -171,6 +188,14 @@
           DTS:LogicalAnd="True"
           DTS:ObjectName="Restricción 4"
           DTS:To="Package\Contenedor de secuencias\STAGE_PROVEDOR" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Contenedor de secuencias.PrecedenceConstraints[Restricción 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{91746817-8848-46FD-9C30-23A8EE52889B}"
+          DTS:From="Package\Contenedor de secuencias\STAGE_PROVEDOR"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restricción 5"
+          DTS:To="Package\Contenedor de secuencias\STAGE_TIEMPO" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
@@ -342,30 +367,68 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Contenedor de secuencias.PrecedenceConstraints[Restricción 4]"
-          TopLeft="104.416662475715,353.192978234117">
+          TopLeft="104.416662475715,353.192978234118">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="172.458326041078,31.5614031256345"
+              EndConnector="172.458326041078,31.5614031256343"
               Start="0,0"
-              End="172.458326041078,24.0614031256345">
+              End="172.458326041078,24.0614031256343">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11.7807015628173" />
+                    End="0,11.7807015628172" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,11.7807015628173"
-                    Point2="0,15.7807015628173"
-                    Point3="4,15.7807015628173" />
+                    Point1="0,11.7807015628172"
+                    Point2="0,15.7807015628172"
+                    Point3="4,15.7807015628172" />
                   <mssgle:LineSegment
-                    End="168.458326041078,15.7807015628173" />
+                    End="168.458326041078,15.7807015628172" />
                   <mssgle:CubicBezierSegment
-                    Point1="168.458326041078,15.7807015628173"
-                    Point2="172.458326041078,15.7807015628173"
-                    Point3="172.458326041078,19.7807015628173" />
+                    Point1="168.458326041078,15.7807015628172"
+                    Point2="172.458326041078,15.7807015628172"
+                    Point3="172.458326041078,19.7807015628172" />
                   <mssgle:LineSegment
-                    End="172.458326041078,24.0614031256345" />
+                    End="172.458326041078,24.0614031256343" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\Contenedor de secuencias\STAGE_TIEMPO"
+          TopLeft="316.791649316128,300.456138728178" />
+        <EdgeLayout
+          Id="Package\Contenedor de secuencias.PrecedenceConstraints[Restricción 5]"
+          TopLeft="305.986099627904,384.754381359752">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="92.1388830215566,-41.6315759649074"
+              Start="0,0"
+              End="92.1388830215566,-34.1315759649074">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-12.869524269427" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-12.869524269427"
+                    Point2="0,-16.869524269427"
+                    Point3="4,-16.869524269427" />
+                  <mssgle:LineSegment
+                    End="88.1388830215566,-16.869524269427" />
+                  <mssgle:CubicBezierSegment
+                    Point1="88.1388830215566,-16.869524269427"
+                    Point2="92.1388830215566,-16.869524269427"
+                    Point3="92.1388830215566,-20.869524269427" />
+                  <mssgle:LineSegment
+                    End="92.1388830215566,-34.1315759649074" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -377,8 +440,8 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="410,478.666666666667"
-          Size="410,522"
+          PanelSize="522.666666666667,478.666666666667"
+          Size="522.666666666667,522"
           Id="Package\Contenedor de secuencias"
           TopLeft="71.2499968148768,58.1578940982798" />
       </GraphLayout>
